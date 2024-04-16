@@ -40,8 +40,6 @@ SELECT *
 -- INSERT INTO TEST (ID, GAME) VALUES (1,'AA'); 
 -- NAME을 언급하지 않았는데 이는 NULL을 입력한다는 의미임, PK에 NULL이 들어가 오류
 
------------------------------------------------------------------------------------------------
-
 /* 실습 */
 CREATE TABLE TEST(
 		ID INT NOT NULL,
@@ -58,8 +56,6 @@ SELECT *
 
 -- INSERT INTO TEST VALUES(1,'C','2023-01-03'); -- ID는 PK로 중복 불가능
 
------------------------------------------------------------------------------------------------
-
 /* 실습 */
 CREATE TABLE TEST(
 	ID VARCHAR(10),
@@ -72,8 +68,6 @@ INSERT INTO TEST VALUES('2',80);
 SELECT * 
 	FROM TEST 
 	WHERE MATH >= 90;
-
------------------------------------------------------------------------------------------------
 
 /* 실습 */
 CREATE TABLE TEST(
@@ -92,8 +86,6 @@ ALTER TABLE TEST CHANGE ID AAA VARCHAR(10); -- 컬럼명 변경, ID를 AAA로 �
 SELECT * 
 	FROM TEST;
 
------------------------------------------------------------------------------------------------
-
 /* 실습 */
 CREATE TABLE TEST( 
 	ID         VARCHAR(100), 
@@ -109,4 +101,4 @@ UPDATE TEST SET ID='10' WHERE ID='1';  -- ID가 1인 행의 ID를 10으로 변�
 DELETE FROM TEST WHERE ID='3';  -- ID가 3인 행 제거
 
 SELECT *
-	FROM TEST
+	FROM TEST;

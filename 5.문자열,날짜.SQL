@@ -33,14 +33,18 @@ SELECT NAME FROM NAME_LIST WHERE NAME LIKE '%i%'; -- i 포함
 SELECT NAME FROM NAME_LIST WHERE NAME LIKE 'M__'; -- M + 2글자
 SELECT NAME FROM NAME_LIST WHERE NAME LIKE 'M[ai]y';  -- M + a 또는 i + y
 
-
+/* 실습 */
+SELECT ANIMAL_ID, NAME
+	FROM ANIMAL_INS
+	WHERE ANIMAL_TYPE = 'Dog' AND LOWER(NAME) LIKE '%el%'
+	ORDER BY NAME;
 
 /* 실습 */
-SELECT FACTORY_ID, FACTORY_NAME, ADDRESS
-    FROM FOOD_FACTORY 
-    WHERE ADDRESS LIKE '강원도%'
-    ORDER BY FACTORY_ID;
-
+SELECT CAR_TYPE, COUNT(*) AS CARS
+    FROM CAR_RENTAL_COMPANY_CAR
+    WHERE OPTIONS LIKE '%통풍시트%' OR OPTIONS LIKE '%열선시트%' OR OPTIONS LIKE '%가죽시트%'
+    GROUP BY CAR_TYPE
+    ORDER BY CAR_TYPE
 
 -----------------------------------------------------------------------------------------------
 
@@ -75,12 +79,19 @@ SELECT NAME FROM NAME_LIST WHERE NAME REGEXP '^M';  -- 첫 글자가 M
 SELECT NAME FROM NAME_LIST WHERE NAME REGEXP '[JM]a..';   -- J or M + a + 문자 2개
 SELECT NAME FROM NAME_LIST WHERE NAME REGEXP 'May|Jam';
 
+/* 실습 */
+SELECT CAR_TYPE, COUNT(*) AS CARS
+    FROM CAR_RENTAL_COMPANY_CAR
+    WHERE OPTIONS REGEXP '통풍시트|열선시트|가죽시트'
+    GROUP BY CAR_TYPE
+    ORDER BY CAR_TYPE
+
 -----------------------------------------------------------------------------------------------
 
 /* DATE_FORMAT */
-DATE_FORMAT(START_DATE, '%Y-%m-%d') #2022-09-10
-DATE_FORMAT(START_DATE, '%Y-%m') #2022-09
-DATE_FORMAT(START_DATE, '%y_%m') #22_09
+DATE_FORMAT(START_DATE, '%Y-%m-%d'); #2022-09-10
+DATE_FORMAT(START_DATE, '%Y-%m'); #2022-09
+DATE_FORMAT(START_DATE, '%y_%m'); #22_09
 
 /*
 	%Y = YYYY
@@ -118,9 +129,11 @@ SELECT BOOK_ID, DATE_FORMAT(PUBLISHED_DATE, '%Y-%m-%d') AS PUBLISHED_DATE
 
 -----------------------------------------------------------------------------------------------
 
-/* GETDATE */
-SELECT GETDATE(); # 현재 날짜, 시간 가져오기
+/* NOW */
+SELECT NOW();
+
+-----------------------------------------------------------------------------------------------
 
 /* DATEDIFF */
-DATEDIFF(END_DATE, START_DATE)
-# 오라클은 TO_CHAR
+-- DATEDIFF(END_DATE, START_DATE)
+SELECT DATEDIFF('2021-01-03', '2021-01-01');
